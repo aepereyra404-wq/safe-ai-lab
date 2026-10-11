@@ -16,6 +16,8 @@ landlock:
 network_policies:
   ollama:
     name: ollama
+    binaries:
+      - path: /usr/bin/node
     endpoints:
       - host: ollama.com
         port: 443
