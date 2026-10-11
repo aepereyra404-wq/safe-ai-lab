@@ -1,0 +1,24 @@
+id: pi-ollama
+display_name: Pi with Ollama Cloud
+description: Ollama cloud model provider profile for Pi
+category: inference
+inference_capable: true
+
+endpoints:
+  - host: ollama.com
+    port: 443
+    path: /**
+    access: full
+    allow_uninspected_credentials: true
+
+credentials:
+  - name: api_key
+    env_vars:
+      - OLLAMA_API_KEY
+    required: true
+    auth:
+      style: bearer
+
+discovery:
+  credentials:
+    - api_key 

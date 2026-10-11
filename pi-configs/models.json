@@ -1,0 +1,29 @@
+{
+  "providers": {
+    "ollama-cloud": {
+      "baseUrl": "https://ollama.com/v1",
+      "api": "openai-completions",
+      "apiKey": "$OLLAMA_API_KEY",
+      "models": [
+        {
+          "id": "glm-5.3",
+	  "name": "glm-5.3",
+	  "options": {
+            "reasoning_effort": "low"
+	  }
+	},
+        {
+          "id": "glm-5.3-flash",
+          "name": "glm-5.3-flash",
+          "options": {
+            "reasoning_effort": "low"
+          }
+        },
+	{
+	  "id": "gpt-oss:120b",
+	  "name": "GPT-OSS 120B"
+	}
+      ]
+    }
+  }
+}
