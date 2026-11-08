@@ -140,6 +140,34 @@ openshell provider destroy github
 | `Git clone fails (authentication)` | GitHub token not exported or wrong scope | Export `GITHUB_TOKEN` with `repo` read permissions |
 | `/etc` write succeeds | Policy mis‑configuration | Ensure `/etc` is only in `read_only` list |
 
+#### PAT verification
+
+```bash
+[user@ai-lab safe-ai-lab]$ curl -sS -o /dev/null \
+  -w 'HTTP %{http_code}\n' \
+  -H "Authorization: Bearer $GITHUB_TOKEN" \
+  -H "Accept: application/vnd.github+json" \
+  https://api.github.com/user
+HTTP 200
+```
+
+The above confirms that the Personal Access Token (PAT) is correctly configured and can authenticate with the GitHub API.
+
+#### Updating the PAT in the sandbox
+
+```bash
+[user@ai-lab safe-ai-lab]$ export GITHUB_TOKEN
+[user@ai-lab safe-ai-lab]$ openshell provider update my-github --credential GITHUB_TOKEN --wait 
+pi-container / my-github: ready (unspecified)
+  Receipt: 01208475-7774-43df-b744-8d1ec6c8c4cd
+  Persisted: 2026-11-08T19:44:33.921905274Z
+  Installed: credentials=true, policy=true, future process environment=true
+  Wait: complete
+[user@ai-lab safe-ai-lab]$ 
+```
+
+This command updates the stored GitHub token for the `my-github` provider inside the sandbox, ensuring that subsequent Git operations use the new credentials.
+
 ---
 
 ### Repository Layout
