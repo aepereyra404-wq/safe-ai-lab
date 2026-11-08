@@ -60,10 +60,10 @@ A minimal starter kit to run **Pi** agents safely inside an **openshell** sandbo
 3. **Import the provider profiles**
    ```bash
    # Ollama Cloud provider (already in the repo)
-   openshell provider profile import -f openshell-configs/profiles/OllamaProvider.yaml
+   openshell provider profile import -f openshell-configs/profiles/ollama_provider.yaml
 
    # GitHub provider – added for source‑control support
-   openshell provider profile import -f openshell-configs/profiles/GithubProvider.yaml --global
+   openshell provider profile import -f openshell-configs/profiles/github_provider.yaml --global
    ```
 4. **Create provider instances**
    ```bash
@@ -488,8 +488,8 @@ Never print, commit, or otherwise expose the actual PAT in sandbox logs, termina
 ├─ openshell-configs/       ← OpenShell sandbox policy & provider profiles
 │   ├─ baseline_policy.yaml   ← Filesystem & network policy
 │   └─ profiles/
-│       ├─ OllamaProvider.yaml← Ollama Cloud provider profile
-│       └─ GithubProvider.yaml ← GitHub API & Git operations profile
+│       ├─ ollama_provider.yaml← Ollama Cloud provider profile
+│       └─ github_provider.yaml ← GitHub API & Git operations profile
 └─ pi-configs/             ← Pi runtime configuration
     ├─ models.json          ← Provider / model mapping
     └─ settings.json        ← Default model & provider
