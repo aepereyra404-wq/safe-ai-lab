@@ -139,8 +139,9 @@ openshell provider destroy github
 | `Network policy denied` | Endpoint not in policy | Add it to `network_policies` in `ollama-policy.yaml` |
 | `Git clone fails (authentication)` | GitHub token not exported or wrong scope | Export `GITHUB_TOKEN` with `repo` read permissions |
 | `/etc` write succeeds | Policy mis‑configuration | Ensure `/etc` is only in `read_only` list |
+| `PAT verification succeeds` | Token valid, API reachable | No action needed |
 
-#### PAT verification
+PAT Is working:
 
 ```bash
 [user@ai-lab safe-ai-lab]$ curl -sS -o /dev/null \
@@ -151,9 +152,7 @@ openshell provider destroy github
 HTTP 200
 ```
 
-The above confirms that the Personal Access Token (PAT) is correctly configured and can authenticate with the GitHub API.
-
-#### Updating the PAT in the sandbox
+I updated the PAT with:
 
 ```bash
 [user@ai-lab safe-ai-lab]$ export GITHUB_TOKEN
@@ -165,8 +164,6 @@ pi-container / my-github: ready (unspecified)
   Wait: complete
 [user@ai-lab safe-ai-lab]$ 
 ```
-
-This command updates the stored GitHub token for the `my-github` provider inside the sandbox, ensuring that subsequent Git operations use the new credentials.
 
 ---
 
