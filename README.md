@@ -60,10 +60,10 @@ A minimal starter kit to run **Pi** agents safely inside an **openshell** sandbo
 3. **Import the provider profiles**
    ```bash
    # Ollama Cloud provider (already in the repo)
-   openshell provider profile import -f openshell-configs/ollama-provider.yaml
+   openshell provider profile import -f openshell-configs/profiles/OllamaProvider.yaml
 
    # GitHub provider – added for source‑control support
-   openshell provider profile import -f openshell-configs/github-provider.yaml --global
+   openshell provider profile import -f openshell-configs/profiles/GithubProvider.yaml --global
    ```
 4. **Create provider instances**
    ```bash
@@ -75,7 +75,7 @@ A minimal starter kit to run **Pi** agents safely inside an **openshell** sandbo
    openshell sandbox create \
        --name pi-container \
        --from ghcr.io/nvidia/openshell-community/sandboxes/pi:latest \
-       --policy ./openshell-configs/ollama-policy.yaml \
+       --policy ./openshell-configs/baseline_policy.yaml \
        --provider pi-ollama \
        -- pi
    ```
@@ -102,7 +102,7 @@ A minimal starter kit to run **Pi** agents safely inside an **openshell** sandbo
 
 ### Customization
 - **Change the default model** – Edit `pi-configs/models.json` (change `defaultModel` in `settings.json` or adjust the `providers` block).
-- **Add more file‑system permissions** – Edit `openshell-configs/ollama-policy.yaml` under `read_write:` (e.g., add `/home/pi/data`).
+- **Add more file‑system permissions** – Edit `openshell-configs/baseline_policy.yaml` under `read_write:` (e.g., add `/home/pi/data`).
 - **Extend network policy** – Add additional allowed endpoints under `network_policies:` if you need services beyond Ollama.
 - **Enable Git operations** – The GitHub provider profile is already imported; you can now run `git clone https://github.com/<repo>.git` inside the sandbox (read‑only by default).
 
@@ -486,9 +486,10 @@ Never print, commit, or otherwise expose the actual PAT in sandbox logs, termina
 .
 ├─ README.md                ← this guide
 ├─ openshell-configs/       ← OpenShell sandbox policy & provider profiles
-│   ├─ ollama-policy.yaml   ← Filesystem & network policy
-│   ├─ ollama-provider.yaml← Ollama Cloud provider profile
-│   └─ github-provider.yaml ← GitHub API & Git operations profile
+│   ├─ baseline_policy.yaml   ← Filesystem & network policy
+│   └─ profiles/
+│       ├─ OllamaProvider.yaml← Ollama Cloud provider profile
+│       └─ GithubProvider.yaml ← GitHub API & Git operations profile
 └─ pi-configs/             ← Pi runtime configuration
     ├─ models.json          ← Provider / model mapping
     └─ settings.json        ← Default model & provider
