@@ -8,10 +8,10 @@ filesystem_policy:
     - /lib
     - /etc
   read_write:
-    - /tmp
+    - /tmp/sandbox-ollama
 
 landlock:
-  compatibility: best_effort
+  compatibility: enforced
 
 network_policies:
   ollama:
@@ -21,4 +21,4 @@ network_policies:
     endpoints:
       - host: ollama.com
         port: 443
-        allow_uninspected_credentials: true
+        allow_uninspected_credentials: false
